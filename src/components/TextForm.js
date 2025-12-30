@@ -110,7 +110,7 @@ export default function TextForm(props) {
         <button
           className="btn btn-success mx-2"
           onClick={handleCharCount}
-          disabled={text.length == 0}
+          disabled={text.length === 0}
         >
           COUNT CHARACTER
         </button>
