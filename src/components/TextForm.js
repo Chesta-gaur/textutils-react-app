@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
   // setText → function to update state
-  const [text, setText] = useState("Enter text here");
+  const [text, setText] = useState("");
 
   // event.target.value gets textarea content, setText() updates state
   // Makes textarea a controlled component(input value controlled by React state)
@@ -40,23 +40,17 @@ export default function TextForm(props) {
     setText(newText);
   };
 
-  // counts the words of the text
-  const handleWordcount = () => {
-    let newText = text.split(" ").filter((words) => words.length !== 0).length;
-    setText(newText);
-  };
-
-  //   counts the character of the text
-  const handleCharCount = () => {
-    let newText = text.length;
-    setText(newText);
-  };
-
   // clears the text
   const handleClearText = () => {
     let newText = "";
     setText(newText);
   };
+
+  // text summary
+  const wordsArray = text.split(/\s+/).filter(Boolean);
+  const wordCount = wordsArray.length;
+  const charCount = text.length;
+  const readingTime = (wordCount / 200).toFixed(2);
 
   return (
     <div className="my-5">
@@ -101,26 +95,19 @@ export default function TextForm(props) {
           REMOVE EXTRA SPACES
         </button>
         <button
-          className="btn btn-secondary mx-2"
-          onClick={handleWordcount}
-          disabled={text.length === 0}
-        >
-          COUNT WORD
-        </button>
-        <button
-          className="btn btn-success mx-2"
-          onClick={handleCharCount}
-          disabled={text.length === 0}
-        >
-          COUNT CHARACTER
-        </button>
-        <button
           className="btn btn-danger mx-2"
           onClick={handleClearText}
           disabled={text.length === 0}
         >
           CLEAR TEXT
         </button>
+      </div>
+      <div className="my-3">
+        <h3 className="mb-3">Text Summary</h3>
+        <p>WORDS: {wordCount}</p>
+        <p>CHARACTERS: {charCount}</p>
+        <p>READING TIME: {readingTime} minutes</p>
+        <p>TEXT PREVIEW : {text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </div>
   );
