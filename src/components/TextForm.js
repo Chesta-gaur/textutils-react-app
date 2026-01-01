@@ -16,12 +16,14 @@ export default function TextForm(props) {
   const handleUpperCase = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Text has been converted to uppercase!", "success");
   };
 
   // converts the text into lower case
   const handleLowerCase = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Text has been converted to lowercase!", "success");
   };
 
   // String → Array → Transform → Array → String → State → UI
@@ -31,6 +33,7 @@ export default function TextForm(props) {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
     setText(newText);
+    props.showAlert("Text has been capitalized succesfully!", "success");
   };
 
   // removes the extra spaces from the text to format it
@@ -38,12 +41,17 @@ export default function TextForm(props) {
     // let newText = text.split(" ").filter(words => words !== "").join(" ");
     let newText = text.split(" ").filter(Boolean).join(" ");
     setText(newText);
+    props.showAlert(
+      "Extra spaces has been removed from the text successfully!",
+      "success"
+    );
   };
 
   // clears the text
   const handleClearText = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Cleared the text area!", "warning");
   };
 
   // text summary
