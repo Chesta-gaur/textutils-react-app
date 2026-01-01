@@ -54,7 +54,26 @@ export default function TextForm(props) {
 
   return (
     <div className="my-5">
-      <h3>{props.heading}</h3>
+      {/* light/dark mode starts */}
+      <div className="form-check form-switch mb-3">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          onClick={props.toggleMode}
+        />
+        <label
+          className="form-check-label"
+          htmlFor="flexSwitchCheckDefault"
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
+        >
+          {props.mode}
+        </label>
+      </div>
+      {/* light/dark mode ends */}
+      <h3 style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}>
+        {props.heading}
+      </h3>
       <div className="my-3">
         {/* onChange → updates state on typing */}
         <textarea
@@ -63,6 +82,14 @@ export default function TextForm(props) {
           onChange={handleOnChange}
           id="myBox"
           rows={8}
+          style={{
+            color: props.mode === "Dark Mode" ? "white" : "black",
+            backgroundColor: props.mode === "Dark Mode" ? "black" : "white",
+            border:
+              props.mode === "Dark Mode"
+                ? "2px solid white"
+                : "2px solid black",
+          }}
         ></textarea>
       </div>
       <div>
@@ -70,6 +97,7 @@ export default function TextForm(props) {
           className="btn btn-success mx-2"
           onClick={handleUpperCase}
           disabled={text.length === 0}
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
         >
           UPPERCASE
         </button>
@@ -77,6 +105,7 @@ export default function TextForm(props) {
           className="btn btn-warning mx-2"
           onClick={handleLowerCase}
           disabled={text.length === 0}
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
         >
           LOWERCASE
         </button>
@@ -84,6 +113,7 @@ export default function TextForm(props) {
           className="btn btn-primary mx-2"
           onClick={handleCapitalize}
           disabled={text.length === 0}
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
         >
           CAPITALIZE
         </button>
@@ -91,6 +121,7 @@ export default function TextForm(props) {
           className="btn btn-info mx-2"
           onClick={handleExtraSpaces}
           disabled={text.length === 0}
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
         >
           REMOVE EXTRA SPACES
         </button>
@@ -98,11 +129,15 @@ export default function TextForm(props) {
           className="btn btn-danger mx-2"
           onClick={handleClearText}
           disabled={text.length === 0}
+          style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
         >
           CLEAR TEXT
         </button>
       </div>
-      <div className="my-3">
+      <div
+        className="my-3"
+        style={{ color: props.mode === "Dark Mode" ? "white" : "black" }}
+      >
         <h3 className="mb-3">Text Summary</h3>
         <p>WORDS: {wordCount}</p>
         <p>CHARACTERS: {charCount}</p>
