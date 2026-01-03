@@ -23,12 +23,10 @@ function App() {
       setMode("Dark Mode");
       document.body.style.backgroundColor = "black";
       showAlert("Dark mode has been enabled", "success");
-      document.title = "TextUtils - Dark Mode";
     } else {
       setMode("Light Mode");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enabled", "success");
-      document.title = "TextUtils - Light Mode";
     }
   };
 
@@ -37,7 +35,7 @@ function App() {
       <Alert alert={alert} />
       <div className="container">
         <TextForm
-          heading="Enter the text to analyze..."
+          heading="Try textUtils - Word counter, Character Counter, Removes Extra Spaces, etc.."
           mode={mode}
           toggleMode={toggleMode}
           showAlert={showAlert}
